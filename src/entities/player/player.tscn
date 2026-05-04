@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpx7dmq3nt6k"]
+
+[ext_resource type="Script" uid="uid://dsuhndxw27hdl" path="res://src/entities/player/player.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cgs4f2hm8ib56" path="res://src/systems/skills/Skill.gd" id="2_wrxq6"]
+[ext_resource type="Resource" uid="uid://dlru5ghelpc20" path="res://src/systems/skills/healskill.tres" id="3_ketdh"]
+[ext_resource type="PackedScene" uid="uid://cgnc766bc380m" path="res://src/entities/player/player_2d_model.tscn" id="3_muk8e"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vt6n5"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vt6n5"]
+size = Vector3(0.8583069, 0.638916, 0.6057129)
+
+[node name="Player" type="CharacterBody3D" groups=["selectable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15958437, 0)
+script = ExtResource("1_script")
+default_skills = Array[ExtResource("2_wrxq6")]([ExtResource("3_ketdh"), ExtResource("3_ketdh"), ExtResource("3_ketdh")])
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.20831847, -1.1920929e-07)
+texture = SubResource("ViewportTexture_vt6n5")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 2.325437, 1.8441138)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, -0.26068604, 4.306281)
+projection = 1
+size = 10.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(100, 100)
+
+[node name="Player2DModel" parent="SubViewport" instance=ExtResource("3_muk8e")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010116577, 0.18054199, 0.0345459)
+shape = SubResource("BoxShape3D_vt6n5")

@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://dasufm0qsh2av"]
+
+[ext_resource type="Texture2D" uid="uid://dor33b3jnnlji" path="res://assets/enemies/dino_enemy_yellow.png" id="1_711y6"]
+
+[sub_resource type="Animation" id="Animation_711y6"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/Root:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.6, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5hypy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/Root:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1crsy"]
+_data = {
+&"RESET": SubResource("Animation_5hypy"),
+&"idle": SubResource("Animation_711y6")
+}
+
+[node name="EnemyDino2dModel" type="Node2D"]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="Root" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(50, 100)
+rotation = -1.5707964
+
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Root"]
+position = Vector2(47, -0.9999962)
+rotation = 1.5707964
+scale = Vector2(0.26923627, 0.26923627)
+texture = ExtResource("1_711y6")
+hframes = 4
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1crsy")
+}
+autoplay = "idle"
