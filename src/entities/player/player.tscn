@@ -1,40 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpx7dmq3nt6k"]
+[gd_scene format=3 uid="uid://bpx7dmq3nt6k"]
 
 [ext_resource type="Script" uid="uid://dsuhndxw27hdl" path="res://src/entities/player/player.gd" id="1_script"]
-[ext_resource type="Script" uid="uid://cgs4f2hm8ib56" path="res://src/systems/skills/Skill.gd" id="2_wrxq6"]
-[ext_resource type="Resource" uid="uid://dlru5ghelpc20" path="res://src/systems/skills/healskill.tres" id="3_ketdh"]
+[ext_resource type="Script" uid="uid://cgs4f2hm8ib56" path="res://resources/skills/skill.gd" id="2_wrxq6"]
+[ext_resource type="Resource" uid="uid://dlru5ghelpc20" path="res://resources/skills/healskill.tres" id="3_ketdh"]
 [ext_resource type="PackedScene" uid="uid://cgnc766bc380m" path="res://src/entities/player/player_2d_model.tscn" id="3_muk8e"]
+[ext_resource type="Resource" uid="uid://rl7bttqvs22i" path="res://resources/skills/renovation.tres" id="4_ketdh"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vt6n5"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vt6n5"]
-size = Vector3(0.8583069, 0.638916, 0.6057129)
+size = Vector3(1.2536154, 0.638916, 0.7497711)
 
-[node name="Player" type="CharacterBody3D" groups=["selectable"]]
+[node name="Player" type="CharacterBody3D" unique_id=702059859 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15958437, 0)
 script = ExtResource("1_script")
-default_skills = Array[ExtResource("2_wrxq6")]([ExtResource("3_ketdh"), ExtResource("3_ketdh"), ExtResource("3_ketdh")])
+default_skills = Array[ExtResource("2_wrxq6")]([ExtResource("3_ketdh"), ExtResource("4_ketdh")])
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.20831847, -1.1920929e-07)
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=565042012]
+transform = Transform3D(0.25, 0, 0, 0, 0.17677669, 0.17677669, 0, -0.17677669, 0.17677669, 0, 0.2919332, 0)
 texture = SubResource("ViewportTexture_vt6n5")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=84421142]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 2.325437, 1.8441138)
 spring_length = 5.0
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=993828653]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, -0.26068604, 4.306281)
 projection = 1
 size = 10.0
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=844970818]
 transparent_bg = true
-size = Vector2i(100, 100)
+size = Vector2i(560, 510)
 
-[node name="Player2DModel" parent="SubViewport" instance=ExtResource("3_muk8e")]
+[node name="Player2DModel" parent="SubViewport" unique_id=1238196855 instance=ExtResource("3_muk8e")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010116577, 0.18054199, 0.0345459)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=628796334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0073304176, 0.18054199, 0.06539154)
 shape = SubResource("BoxShape3D_vt6n5")
+
+[node name="CastTimer" type="Timer" parent="." unique_id=1853779052]
+one_shot = true

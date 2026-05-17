@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Add_Skill" format=3 uid="uid://d3n481l04t5q5"]
+
+[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/kenney/1_bit_pack.png" id="1_p0ye6"]
+[ext_resource type="Script" uid="uid://ths5k3rapd7t" path="res://resources/upgrades/add_skill.gd" id="1_qmqy5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lyod"]
+atlas = ExtResource("1_p0ye6")
+region = Rect2(512, 176, 16, 16)
+
+[resource]
+script = ExtResource("1_qmqy5")
+upgrade_name = "Add Skill"
+description = "Add a skill"
+icon = SubResource("AtlasTexture_0lyod")

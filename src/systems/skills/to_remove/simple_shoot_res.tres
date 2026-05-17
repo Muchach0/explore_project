@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SimpleShootSkill" load_steps=4 format=3 uid="uid://tsdudnshtwkw"]
 
-[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/Kenney/1_bit_pack.png" id="1_javyi"]
+[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/kenney/1_bit_pack.png" id="1_javyi"]
 [ext_resource type="Script" uid="uid://g2dm4ed4sx1j" path="res://src/systems/skills/to_remove/SimpleShootSkill.gd" id="2_klk3h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mehvd"]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Upgrade_Skill" format=3 uid="uid://pndob0lpd6we"]
+
+[ext_resource type="Script" uid="uid://dxpit88x52iam" path="res://resources/upgrades/upgrade_skill.gd" id="1_b2h30"]
+[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/kenney/1_bit_pack.png" id="1_eqyw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prplh"]
+atlas = ExtResource("1_eqyw0")
+region = Rect2(369, 177, 14, 14)
+
+[resource]
+script = ExtResource("1_b2h30")
+upgrade_name = "Upgrade a Skill"
+description = "Upgrade a skill"
+icon = SubResource("AtlasTexture_prplh")
+metadata/_custom_type_script = "uid://dxpit88x52iam"

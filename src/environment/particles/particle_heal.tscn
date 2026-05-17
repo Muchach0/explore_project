@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cn8sholhpdpkk"]
+
+[sub_resource type="Curve" id="Curve_fm2ch"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nckh6"]
+curve = SubResource("Curve_fm2ch")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bu653"]
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.099999994
+scale_max = 0.14999999
+scale_curve = SubResource("CurveTexture_nckh6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fm2ch"]
+shading_mode = 0
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_muf2y"]
+material = SubResource("StandardMaterial3D_fm2ch")
+
+[node name="ParticleHeal" type="GPUParticles3D" unique_id=637874378]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_bu653")
+draw_pass_1 = SubResource("BoxMesh_muf2y")

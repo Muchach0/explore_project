@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Add_Ally" format=3 uid="uid://6mk7cs6v8hku"]
+
+[ext_resource type="Script" uid="uid://b8v6utep16o36" path="res://resources/upgrades/add_ally.gd" id="1_3gipo"]
+[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/kenney/1_bit_pack.png" id="1_o3fgb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqurd"]
+atlas = ExtResource("1_o3fgb")
+region = Rect2(465, 1, 14, 14)
+
+[resource]
+script = ExtResource("1_3gipo")
+upgrade_name = "Add a Tomatoe!"
+description = "Add a tomatoe to your group"
+icon = SubResource("AtlasTexture_rqurd")
+metadata/_custom_type_script = "uid://b8v6utep16o36"

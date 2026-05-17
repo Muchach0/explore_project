@@ -8,21 +8,41 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
-config/name="heal_project"
-run/main_scene="uid://ddmdii4mctmo6"
-config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="uid://gaeyov1ts7er"
+config/name="explore_project"
+run/main_scene="uid://bge4wsth7e4uo"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+config/icon="uid://b8i1nk1h8e8qx"
 
 [autoload]
 
 EventBus="*res://src/autoloads/event_bus.gd"
 Items="*res://src/systems/items/items.gd"
+PartyStats="*uid://c3bc5cjdr0hp2"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "yellow",
+"res://godot-paper2d-tutorial/": "red",
+"res://resources/": "green",
+"res://src/entities/": "blue",
+"res://src/environment/": "green",
+"res://src/systems/": "orange",
+"res://src/ui/": "purple"
+}
 
 [global_group]
 
 selectable=""
+enemy=""
+ally=""
+player=""
 
 [input]
 

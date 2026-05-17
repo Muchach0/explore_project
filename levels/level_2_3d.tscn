@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b17mp0pav6qbr"]
+
+[ext_resource type="PackedScene" uid="uid://ddmdii4mctmo6" path="res://levels/level_1_3d.tscn" id="1_xmclb"]
+[ext_resource type="PackedScene" uid="uid://ejb186jsnxhs" path="res://src/entities/npc/enemies/enemy_brocoli_1.tscn" id="2_tyr4m"]
+
+[node name="Level23d" unique_id=1218133499 instance=ExtResource("1_xmclb")]
+
+[node name="Brocoli" parent="." index="6" unique_id=1179856755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.562502, 0, -2.5759277)
+
+[node name="Brocoli4" parent="." index="8" unique_id=537224136 instance=ExtResource("2_tyr4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8264332, 0, 0.12997437)

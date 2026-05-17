@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://2sp7sjqa4e31"]
+
+[ext_resource type="Texture2D" uid="uid://ce1ag5u2m7kco" path="res://assets/environment/rock_1.png" id="1_5hg2s"]
+
+[node name="Rock_1" type="Sprite3D" unique_id=548802123]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.6535183, 0)
+texture = ExtResource("1_5hg2s")

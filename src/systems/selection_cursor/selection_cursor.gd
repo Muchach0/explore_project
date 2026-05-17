@@ -2,6 +2,8 @@ extends Node3D
 
 @onready var _sprite: Sprite3D = $Sprite3D
 
+var _current_target: Node3D = null
+
 func _ready() -> void:
 	visible = false
 
@@ -33,7 +35,20 @@ func _do_selection(screen_pos: Vector2) -> void:
 	if collider == null or not collider.is_in_group("selectable"):
 		return
 
-	var target_pos: Vector3 = collider.global_position
-	global_position = Vector3(target_pos.x, target_pos.y + 0.05, target_pos.z)
-	visible = true
+	_attach_to(collider)
 	EventBus.entity_selected.emit(collider)
+
+func _attach_to(target: Node3D) -> void:
+	if _current_target == target:
+		return
+	if _current_target != null and _current_target.tree_exited.is_connected(_on_target_removed):
+		_current_target.tree_exited.disconnect(_on_target_removed)
+	_current_target = target
+	reparent(target, false)
+	position = Vector3(0.0, 0.05, 0.0)
+	visible = true
+	target.tree_exited.connect(_on_target_removed)
+
+func _on_target_removed() -> void:
+	_current_target = null
+	visible = false

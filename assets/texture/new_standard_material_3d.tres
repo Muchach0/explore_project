@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://divcgam1gym8e"]
+
+[ext_resource type="Texture2D" uid="uid://dxxahrhloatw6" path="res://assets/texture/ChatGPT Image May 11, 2026, 05_05_21 PM.png" id="1_xj7hq"]
+
+[resource]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = ExtResource("1_xj7hq")

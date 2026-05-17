@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Add_Max_Health_Ally_Upgrade" format=3 uid="uid://qtydq3qmr5x8"]
+
+[ext_resource type="Script" uid="uid://cy46c53u6c54u" path="res://resources/upgrades/add_max_health_ally.gd" id="1_60aig"]
+[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/kenney/1_bit_pack.png" id="1_uq8k2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnmjt"]
+atlas = ExtResource("1_uq8k2")
+region = Rect2(480, 129, 16, 14)
+
+[resource]
+script = ExtResource("1_60aig")
+upgrade_name = "Add 20 Max Health"
+description = "Add 20 Max health to all allies"
+icon = SubResource("AtlasTexture_vnmjt")

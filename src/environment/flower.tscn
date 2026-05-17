@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://de3e1utylsnah"]
+
+[ext_resource type="Texture2D" uid="uid://dmp38g6lyo1qh" path="res://assets/environment/flower_1.png" id="1_ax5my"]
+
+[node name="Flower_1" type="Sprite3D" unique_id=548802123]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.6535183, 0)
+texture = ExtResource("1_ax5my")

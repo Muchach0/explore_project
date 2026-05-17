@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://ejb186jsnxhs"]
+
+[ext_resource type="Script" uid="uid://ce466t8kx3op" path="res://src/entities/npc/npc_base.gd" id="1_4qafx"]
+[ext_resource type="Script" uid="uid://b73sir6xbr0gt" path="res://src/systems/combat/hurtbox.gd" id="2_3ue5l"]
+[ext_resource type="PackedScene" uid="uid://bn8egp47cuwf0" path="res://src/entities/npc/enemies/enemy_brocoli_1_2d_model.tscn" id="3_2rrio"]
+[ext_resource type="Script" uid="uid://bgg3fp2f8oroh" path="res://src/systems/state_machine/state_machine.gd" id="4_8qwxt"]
+[ext_resource type="Script" uid="uid://beocw48giicgu" path="res://src/systems/state_machine/states/idle_state.gd" id="5_fwaqj"]
+[ext_resource type="Script" uid="uid://qnplu87au3m0" path="res://src/systems/state_machine/states/wandering_state.gd" id="6_qo3t4"]
+[ext_resource type="Script" uid="uid://veqriul8mo75" path="res://src/systems/state_machine/states/combat_state.gd" id="7_i2ve8"]
+[ext_resource type="Script" uid="uid://djq4a00naqbu6" path="res://src/systems/state_machine/states/dead_state.gd" id="8_lvi73"]
+[ext_resource type="Script" uid="uid://c78oik3ku5pcm" path="res://src/systems/state_machine/states/walking_state.gd" id="9_54b4d"]
+[ext_resource type="Script" uid="uid://c7n12r1ga5b8m" path="res://src/systems/combat/hitbox.gd" id="10_h2r6m"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_66muy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d3bgc"]
+size = Vector3(0.5179014, 1.0322266, 0.6962707)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvj66"]
+size = Vector3(0.51675487, 0.7996826, 0.41509843)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kgs2i"]
+height = 0.5
+radius = 4.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ii6dg"]
+size = Vector3(0.6239624, 0.48968506, 0.9284363)
+
+[node name="Brocoli" type="CharacterBody3D" unique_id=1179856755 groups=["enemy", "selectable"]]
+script = ExtResource("1_4qafx")
+target_group = "ally"
+attack_range = 0.75
+attack_cooldown = 1.0
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=542942576]
+transform = Transform3D(0.5, 0, 0, 0, 0.35355338, 0.35355338, 0, -0.35355338, 0.35355338, 0, 0.64062, -1.1920929e-07)
+texture = SubResource("ViewportTexture_66muy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1311365375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026014626, 0.5376172, 0.3120497)
+shape = SubResource("BoxShape3D_d3bgc")
+
+[node name="Hurtbox" type="Area3D" parent="CollisionShape3D" unique_id=2044468537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007385254, -0.21582034, -0.14455032)
+script = ExtResource("2_3ue5l")
+damage = 15
+metadata/_custom_type_script = "uid://b73sir6xbr0gt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionShape3D/Hurtbox" unique_id=1972390716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004525423, 0.10015872, -0.4622403)
+shape = SubResource("BoxShape3D_cvj66")
+debug_color = Color(0.8512725, 0.0008688563, 0.8983177, 0.41960785)
+
+[node name="AggroArea3D" type="Area3D" parent="." unique_id=1998364627]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroArea3D" unique_id=1768972219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1885376, 0)
+shape = SubResource("CylinderShape3D_kgs2i")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1726727416]
+transparent_bg = true
+size = Vector2i(375, 375)
+
+[node name="Model2D" parent="SubViewport" unique_id=1988820982 instance=ExtResource("3_2rrio")]
+
+[node name="StateMachine" type="Node" parent="." unique_id=1114490860]
+script = ExtResource("4_8qwxt")
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1634122410]
+script = ExtResource("5_fwaqj")
+
+[node name="WanderingState" type="Node" parent="StateMachine" unique_id=1622257582]
+script = ExtResource("6_qo3t4")
+
+[node name="CombatState" type="Node" parent="StateMachine" unique_id=1791949768]
+script = ExtResource("7_i2ve8")
+
+[node name="DeadState" type="Node" parent="StateMachine" unique_id=614151145]
+script = ExtResource("8_lvi73")
+
+[node name="WalkingState" type="Node" parent="StateMachine" unique_id=586968870]
+script = ExtResource("9_54b4d")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1887792740]
+script = ExtResource("10_h2r6m")
+metadata/_custom_type_script = "uid://c7n12r1ga5b8m"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=379517467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0093688965, 0.25515747, 0.2237091)
+shape = SubResource("BoxShape3D_ii6dg")
+debug_color = Color(0.6918435, 0.49745774, 1.92523e-07, 0.41960785)

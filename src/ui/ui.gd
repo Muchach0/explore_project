@@ -39,11 +39,21 @@ extends CanvasLayer
 @onready var experience_bar: ProgressBar = $ExperienceBar/ProgressBar
 @onready var experience_label: Label = $ExperienceBar/ProgressBar/Label
 
+
+# Casting bar related UI
+@onready var casting_bar: ProgressBar = $ControlSkillBar/Control/SkillDisplay/VBoxContainer/CastingBar/ProgressBar
+@onready var casting_bar_label: Label = $ControlSkillBar/Control/SkillDisplay/VBoxContainer/CastingBar/ProgressBar/Label
+
+var _cast_elapsed: float = 0.0
+var _cast_duration: float = 1.0
+
 var number_of_players: int = 0
-const THEME: Theme = preload("res://assets/theme/my_theme.tres")
+const THEME: Theme = preload("res://assets/theme_and_fonts/my_theme.tres")
 const ITEM_ICON_SIZE: int = 16
 const ITEM_GOLD_ICON: Texture2D = preload("res://assets/icons/gold.png")
 const ITEM_EXPERIENCE_ICON: Texture2D = preload("res://assets/icons/experience.png")
+const ALLY_TOMATOE_SCENE: PackedScene = preload("res://src/entities/npc/allies/ally_tomatoe_1.tscn")
+const ENEMY_BROCOLI_SCENE: PackedScene = preload("res://src/entities/npc/enemies/enemy_brocoli_1.tscn")
 
 # Quest tree item storage: quest_id -> {quest_item: TreeItem, progress_item: TreeItem, rewards_item: TreeItem}
 var quest_tree_items: Dictionary = {}
@@ -51,6 +61,7 @@ var tree_root: TreeItem = null
 
 
 func _ready() -> void:
+    set_process(false)
     # EventBus.connect("add_player", on_player_added)
     # EventBus.connect("remove_player", on_remove_player)
     # # EventBus.connect("start_level", on_start_level)
@@ -107,6 +118,9 @@ func _ready() -> void:
     # Player dying related signals
     EventBus.player_died.connect(on_player_died)
 
+    EventBus.cast_started.connect(on_cast_starting)
+    EventBus.cast_finished.connect(on_cast_finished_or_canceled)
+    EventBus.cast_cancelled.connect(on_cast_finished_or_canceled)
 
 func on_player_added(_player_id, _player_info) -> void:
     number_of_players += 1
@@ -405,9 +419,50 @@ func on_xp_changed(current_xp: int, xp_to_next: int) -> void:
 #endregion: Experience related functions
 
 
+
+#region Casting related functions
+func on_cast_starting(_skill_name: String, duration: float) -> void:
+    _cast_elapsed = 0.0
+    _cast_duration = duration
+    casting_bar_label.text = _skill_name
+    casting_bar.value = 0.0
+    casting_bar.show()
+    set_process(true)
+
+
+func on_cast_finished_or_canceled() -> void:
+    casting_bar.hide()
+    set_process(false)
+#endregion
+
+
+
+
 #region Debug: To remove
 func _on_button_all_take_damage_pressed() -> void:
     for node in get_tree().get_nodes_in_group("selectable"):
         if node.has_method("take_damage"):
             node.take_damage(10)
+
+func _on_button_spawn_ally_pressed() -> void:
+    # Spawn a tomatoe ally scene at (-1, 0, 0)
+    var ally := ALLY_TOMATOE_SCENE.instantiate() as Node3D
+    get_parent().add_child(ally)
+    ally.global_position = Vector3(-1, 0, 0)
+
+func _on_button_spawn_brocoli_pressed() -> void:
+    # Spawn a brocoli scene at (2,0,0)
+    var brocoli := ENEMY_BROCOLI_SCENE.instantiate() as Node3D
+    get_parent().add_child(brocoli)
+    brocoli.global_position = Vector3(2, 0, 0)
+
+
+
 #endregion
+
+
+# Process function
+func _process(delta: float) -> void:
+    # Used for casting progress bar
+    _cast_elapsed = minf(_cast_elapsed + delta, _cast_duration)
+    casting_bar.value = (_cast_elapsed / _cast_duration) * casting_bar.max_value

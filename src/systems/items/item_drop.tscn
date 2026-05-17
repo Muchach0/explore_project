@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2y8g8aps26he"]
 
-[ext_resource type="Script" uid="uid://3e0vey8itnh2" path="res://Util/Items/item_drop.gd" id="1_n1uae"]
-[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://Art/Sprites/Kenney/1_bit_pack.png" id="2_1ttym"]
-[ext_resource type="Theme" uid="uid://c6vho6rwvu82i" path="res://Art/Font/my_theme.tres" id="3_ln63r"]
+[ext_resource type="Script" uid="uid://3e0vey8itnh2" path="res://src/systems/items/item_drop.gd" id="1_n1uae"]
+[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/kenney/1_bit_pack.png" id="2_1ttym"]
+[ext_resource type="Theme" uid="uid://c6vho6rwvu82i" path="res://assets/theme_and_fonts/my_theme.tres" id="3_ln63r"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_n1uae"]
 properties/0/path = NodePath(".:position")

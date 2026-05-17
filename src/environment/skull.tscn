@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://k4m6qhqmsa1f"]
+
+[ext_resource type="Texture2D" uid="uid://corw6r6yjtgqt" path="res://assets/environment/skull_1.png" id="1_cnyip"]
+
+[node name="Skull_1" type="Sprite3D" unique_id=548802123]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.638252, 0)
+texture = ExtResource("1_cnyip")

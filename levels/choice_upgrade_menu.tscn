@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://btl8lxwg2kfkj"]
+
+[ext_resource type="Theme" uid="uid://c6vho6rwvu82i" path="res://assets/theme_and_fonts/my_theme.tres" id="1_jygd3"]
+[ext_resource type="Script" uid="uid://blp5nlli1n53h" path="res://resources/upgrades/upgrade.gd" id="2_m0i6c"]
+[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/kenney/1_bit_pack.png" id="2_mvyxn"]
+[ext_resource type="Resource" uid="uid://6mk7cs6v8hku" path="res://resources/upgrades/add_ally.tres" id="3_bb688"]
+[ext_resource type="Script" uid="uid://d3exomsxnuntr" path="res://levels/choice_upgrade_menu.gd" id="3_g4rm8"]
+[ext_resource type="Resource" uid="uid://d3n481l04t5q5" path="res://resources/upgrades/add_skill.tres" id="4_1u31u"]
+[ext_resource type="Resource" uid="uid://pndob0lpd6we" path="res://resources/upgrades/upgrade_skill.tres" id="5_takkj"]
+[ext_resource type="Resource" uid="uid://qtydq3qmr5x8" path="res://resources/upgrades/add_max_health_ally.tres" id="6_bb688"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvyxn"]
+atlas = ExtResource("2_mvyxn")
+region = Rect2(417, 0, 16, 16)
+
+[node name="ChoiceUpgradeMenu" type="Control" unique_id=1549765750]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_g4rm8")
+upgrade_availables = Array[ExtResource("2_m0i6c")]([ExtResource("3_bb688"), ExtResource("4_1u31u"), ExtResource("5_takkj"), ExtResource("6_bb688")])
+
+[node name="Main_Label_Control" type="Control" parent="." unique_id=1197709185]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Main_Label" type="Label" parent="Main_Label_Control" unique_id=917477714]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.5
+offset_right = 165.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme = ExtResource("1_jygd3")
+text = "Choose an Upgrade"
+
+[node name="Three_Column_Control" type="Control" parent="." unique_id=321333040]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Three_Column_Control" unique_id=463294409]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button1" type="Button" parent="Three_Column_Control/HBoxContainer" unique_id=1144137605]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_jygd3")
+text = "Name Upgrade 1
+
+Description: My_description LONGER DESCRIPTION ON THIS PARTICULAR BUTTON"
+icon = SubResource("AtlasTexture_mvyxn")
+autowrap_mode = 2
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button2" type="Button" parent="Three_Column_Control/HBoxContainer" unique_id=1395114235]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_jygd3")
+text = "Name Upgrade 1
+Description: My_description"
+icon = SubResource("AtlasTexture_mvyxn")
+autowrap_mode = 2
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button3" type="Button" parent="Three_Column_Control/HBoxContainer" unique_id=665888499]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_jygd3")
+text = "Name Upgrade 1
+
+Description: My_description"
+icon = SubResource("AtlasTexture_mvyxn")
+autowrap_mode = 2
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true

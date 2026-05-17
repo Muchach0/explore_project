@@ -1,0 +1,51 @@
+class_name SkillSlot
+extends Control
+
+@onready var sprite : Sprite2D = $SkillSprite
+@onready var level_label : Label = $LevelLabel
+@onready var skill_level_up_control: Control = $ControlLevelUp
+
+var slot_index: int = 0
+
+func _ready():
+    EventBus.leveled_up.connect(show_skill_level_up_button)
+    EventBus.one_skill_level_up.connect(hide_skill_level_up_button)
+
+func _gui_input(event: InputEvent) -> void:
+    if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+        if skill != null:
+            print("skill_slot.gd - _gui_input - skill pressed: " + str(slot_index))
+            EventBus.skill_slot_pressed.emit(slot_index)
+            
+
+var skill : Skill:
+    set(val):
+        skill = val
+        if skill == null:
+            sprite.texture = null
+            level_label.text = ""
+            return
+        sprite.texture = skill.icon
+        level_label.text = str(skill.level)
+
+func _on_skill_level_up_button_pressed():
+    if skill == null:
+        return
+    print("skill_slot.gd - _on_skill_level_up_button_pressed() - skill: %s" % skill.skill_name)
+    skill.level_up()
+    EventBus.one_skill_level_up.emit(skill)
+    
+
+
+func hide_skill_level_up_button(_skill: Skill):
+    skill_level_up_control.hide()
+
+func show_skill_level_up_button(_level: int, _levels_gained: int, _skill_points: int):
+    if skill == null:
+        return
+    skill_level_up_control.show()
+
+
+func _on_pressed() -> void:
+    print("skill_slot.gd - _on_pressed() - button with id pressed: " + str(slot_index))
+    pass # Replace with function body.

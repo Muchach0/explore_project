@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="HealSkill" format=3 uid="uid://dlru5ghelpc20"]
+
+[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/kenney/1_bit_pack.png" id="1_kxnsg"]
+[ext_resource type="Script" uid="uid://rsrmj16m7kvj" path="res://resources/skills/heal_skill.gd" id="1_wb8du"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x456p"]
+atlas = ExtResource("1_kxnsg")
+region = Rect2(290, 149, 12, 11)
+
+[resource]
+script = ExtResource("1_wb8du")
+skill_name = "Basic Heal"
+cooldown = 0.0
+cast_time = 1.0
+icon = SubResource("AtlasTexture_x456p")
+metadata/_custom_type_script = "uid://rsrmj16m7kvj"

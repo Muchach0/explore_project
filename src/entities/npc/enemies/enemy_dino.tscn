@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bje58g5kkiaiq"]
+
+[ext_resource type="Script" uid="uid://ce466t8kx3op" path="res://src/entities/npc/npc_base.gd" id="1_krn0v"]
+[ext_resource type="PackedScene" uid="uid://dsf3tn8fxyqe3" path="res://src/entities/npc/enemies/enemy_dino_1_2d_model.tscn" id="2_5xrde"]
+[ext_resource type="Script" uid="uid://veqriul8mo75" path="res://src/systems/state_machine/states/combat_state.gd" id="7_krn0v"]
+[ext_resource type="Script" uid="uid://c7n12r1ga5b8m" path="res://src/systems/combat/hitbox.gd" id="10_vk0yg"]
+[ext_resource type="Script" uid="uid://bgg3fp2f8oroh" path="res://src/systems/state_machine/state_machine.gd" id="sm_1"]
+[ext_resource type="Script" uid="uid://beocw48giicgu" path="res://src/systems/state_machine/states/idle_state.gd" id="sm_2"]
+[ext_resource type="Script" uid="uid://qnplu87au3m0" path="res://src/systems/state_machine/states/wandering_state.gd" id="sm_3"]
+[ext_resource type="Script" uid="uid://djq4a00naqbu6" path="res://src/systems/state_machine/states/dead_state.gd" id="sm_6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nts0h"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u14pb"]
+size = Vector3(0.77633667, 0.43145752, 1.1914215)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_410ba"]
+size = Vector3(1.9990349, 0.48999023, 1.359375)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vk0yg"]
+height = 0.43701172
+radius = 5.414551
+
+[node name="EnemyDino" type="CharacterBody3D" unique_id=1508152178 groups=["enemy", "selectable"]]
+script = ExtResource("1_krn0v")
+target_group = "ally"
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=450944258]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 1.3327729, 0)
+texture = SubResource("ViewportTexture_nts0h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2016404091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118759155, 0.25320435, 0.75691986)
+shape = SubResource("BoxShape3D_u14pb")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1265664808]
+transparent_bg = true
+size = Vector2i(375, 375)
+
+[node name="Model2D" parent="SubViewport" unique_id=1988820982 instance=ExtResource("2_5xrde")]
+
+[node name="StateMachine" type="Node" parent="." unique_id=6551288]
+script = ExtResource("sm_1")
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1696446415]
+script = ExtResource("sm_2")
+
+[node name="WanderingState" type="Node" parent="StateMachine" unique_id=1672651989]
+script = ExtResource("sm_3")
+
+[node name="CombatState" type="Node" parent="StateMachine" unique_id=1176183748]
+script = ExtResource("7_krn0v")
+
+[node name="DeadState" type="Node" parent="StateMachine" unique_id=1410111061]
+script = ExtResource("sm_6")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=202532562]
+script = ExtResource("10_vk0yg")
+metadata/_custom_type_script = "uid://c7n12r1ga5b8m"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=366738952]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15172005, 0.25500488, 0.6887207)
+shape = SubResource("BoxShape3D_410ba")
+
+[node name="AggroArea3D" type="Area3D" parent="." unique_id=1829286996]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroArea3D" unique_id=1490269686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22003174, 0)
+shape = SubResource("CylinderShape3D_vk0yg")

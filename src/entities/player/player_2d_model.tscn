@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgnc766bc380m"]
+[gd_scene format=3 uid="uid://cgnc766bc380m"]
 
-[ext_resource type="Texture2D" uid="uid://d0akaysvrrqcf" path="res://assets/player/tomatoe_v3.png" id="1_cbper"]
+[ext_resource type="Texture2D" uid="uid://dasygeyc3blfr" path="res://assets/player/v1_player.png" id="1_1muw0"]
 [ext_resource type="Texture2D" uid="uid://c2ety23v1kymw" path="res://assets/player/tomatoe_v3_hat.png" id="2_1muw0"]
 
 [sub_resource type="Animation" id="Animation_1muw0"]
@@ -39,7 +39,36 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(92, 3.8146973e-06)]
+"values": [Vector2(287, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/Root/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_46hhu"]
+resource_name = "cast"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/Root/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_cbper"]
@@ -57,6 +86,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.025, 1.025), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/Root/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_q05pl"]
@@ -93,53 +134,67 @@ tracks/2/path = NodePath("Skeleton2D/Root/Hat:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"times": PackedFloat32Array(0, 0.23333333, 0.5, 0.76666665),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(92, 3.8146973e-06), Vector2(85, 0), Vector2(92, 3.8146973e-06), Vector2(85, 0)]
+"values": [Vector2(287, 0), Vector2(250, 0), Vector2(287, 0), Vector2(282, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/Root/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q05pl"]
 _data = {
 &"RESET": SubResource("Animation_1muw0"),
+&"cast": SubResource("Animation_46hhu"),
 &"idle": SubResource("Animation_cbper"),
 &"walk": SubResource("Animation_q05pl")
 }
 
-[node name="Player2DModel" type="Node2D"]
+[node name="Player2DModel" type="Node2D" unique_id=2018947752]
+scale = Vector2(2, 2)
 
-[node name="ReferenceRect" type="ReferenceRect" parent="."]
-offset_right = 100.0
-offset_bottom = 100.0
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=1465670455]
+offset_right = 256.0
+offset_bottom = 256.0
 
-[node name="Skeleton2D" type="Skeleton2D" parent="."]
+[node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=962074639]
+position = Vector2(30, 0)
 
-[node name="Root" type="Bone2D" parent="Skeleton2D"]
-position = Vector2(50, 100)
+[node name="Root" type="Bone2D" parent="Skeleton2D" unique_id=1857715707]
+position = Vector2(100, 251)
 rotation = -1.5707964
 rest = Transform2D(-4.371139e-08, -1, 1, -4.371139e-08, 50, 100)
 
-[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Root"]
-position = Vector2(48.659966, 0.45665157)
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Root" unique_id=1767806666]
+position = Vector2(123, 9.926e-06)
 rotation = 1.5707964
-scale = Vector2(0.175, 0.19)
-texture = ExtResource("1_cbper")
+texture = ExtResource("1_1muw0")
+hframes = 8
+vframes = 8
 
-[node name="Hat" type="Bone2D" parent="Skeleton2D/Root"]
-position = Vector2(92, 3.8146973e-06)
+[node name="Hat" type="Bone2D" parent="Skeleton2D/Root" unique_id=1944681020]
+position = Vector2(287, 0)
 rest = Transform2D(1, 0, 0, 1, 92, 3.8146973e-06)
 
-[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Root/Hat"]
+[node name="Sprite2D" type="Sprite2D" parent="Skeleton2D/Root/Hat" unique_id=172704450]
+visible = false
 position = Vector2(-40, -1.7484556e-06)
 rotation = 1.5707964
-scale = Vector2(0.175, 0.19)
 texture = ExtResource("2_1muw0")
 
-[node name="Mustache" type="Bone2D" parent="Skeleton2D/Root"]
+[node name="Mustache" type="Bone2D" parent="Skeleton2D/Root" unique_id=1288404779]
 position = Vector2(20, 0)
 rest = Transform2D(1, 0, 0, 1, 20, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_q05pl")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=466498846]
+libraries/ = SubResource("AnimationLibrary_q05pl")

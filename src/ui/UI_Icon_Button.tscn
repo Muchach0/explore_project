@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://c5gra3fegbvub"]
 
-[ext_resource type="Texture2D" uid="uid://ump855yruull" path="res://assets/Kenney/ui_packed.png" id="1_g38r7"]
+[ext_resource type="Texture2D" uid="uid://ump855yruull" path="res://assets/kenney/ui_packed.png" id="1_g38r7"]
 [ext_resource type="Script" uid="uid://cjj7hrw8catoe" path="res://src/ui/ui_icon_button.gd" id="2_lalga"]
-[ext_resource type="Texture2D" uid="uid://caa8wit84xh8x" path="res://assets/Kenney/1_bit_pack_atlas_texture.tres" id="3_1bl7g"]
-[ext_resource type="Theme" uid="uid://c6vho6rwvu82i" path="res://assets/theme/my_theme.tres" id="4_4pyr4"]
+[ext_resource type="Texture2D" uid="uid://caa8wit84xh8x" path="res://assets/kenney/1_bit_pack_atlas_texture.tres" id="3_1bl7g"]
+[ext_resource type="Theme" uid="uid://c6vho6rwvu82i" path="res://assets/theme_and_fonts/my_theme.tres" id="4_4pyr4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r5dnw"]
 atlas = ExtResource("1_g38r7")

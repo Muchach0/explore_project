@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Renovation" format=3 uid="uid://rl7bttqvs22i"]
+
+[ext_resource type="Script" uid="uid://dct6si1lmk14q" path="res://resources/skills/renovation.gd" id="1_1ctle"]
+[ext_resource type="Texture2D" uid="uid://bybaw5r0ow2oc" path="res://assets/kenney/1_bit_pack.png" id="1_h4t01"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruoa0"]
+atlas = ExtResource("1_h4t01")
+region = Rect2(191, 351, 16, 16)
+
+[resource]
+script = ExtResource("1_1ctle")
+skill_name = "Renovation"
+is_hot_or_dot = true
+icon = SubResource("AtlasTexture_ruoa0")

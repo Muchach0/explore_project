@@ -1,73 +1,56 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddmdii4mctmo6"]
+[gd_scene format=3 uid="uid://ddmdii4mctmo6"]
 
-[ext_resource type="PackedScene" uid="uid://bje58g5kkiaiq" path="res://src/entities/enemy/enemy_dino.tscn" id="1_hhur6"]
-[ext_resource type="PackedScene" uid="uid://bpx7dmq3nt6k" path="res://src/entities/player/player.tscn" id="1_plnw3"]
-[ext_resource type="PackedScene" uid="uid://cvi6rvp8x0s2g" path="res://src/entities/npc/npc.tscn" id="3_hinqm"]
-[ext_resource type="PackedScene" uid="uid://jdgl6gpb80es" path="res://src/ui/UI.tscn" id="4_vij2i"]
-[ext_resource type="Texture2D" uid="uid://dayre77fx4psh" path="res://assets/environment/grass_1.png" id="5_rq75q"]
-[ext_resource type="Texture2D" uid="uid://wvwle0xgcvxo" path="res://assets/environment/grass_2.png" id="6_d0nsp"]
-[ext_resource type="Texture2D" uid="uid://dmp38g6lyo1qh" path="res://assets/environment/flower_1.png" id="7_rjqjg"]
-[ext_resource type="Texture2D" uid="uid://ce1ag5u2m7kco" path="res://assets/environment/rock_1.png" id="8_3q7w2"]
-[ext_resource type="Texture2D" uid="uid://corw6r6yjtgqt" path="res://assets/environment/skull_1.png" id="9_fy1hu"]
-[ext_resource type="PackedScene" uid="uid://lut6v78l421n" path="res://src/systems/selection_cursor/SelectionCursor.tscn" id="10_rjqjg"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhei5"]
-shading_mode = 0
-albedo_color = Color(0.8117647, 0.88235295, 0, 1)
+[ext_resource type="Material" uid="uid://divcgam1gym8e" path="res://assets/texture/new_standard_material_3d.tres" id="1_rjqjg"]
+[ext_resource type="PackedScene" uid="uid://bpx7dmq3nt6k" path="res://src/entities/player/player.tscn" id="4_rq75q"]
+[ext_resource type="PackedScene" uid="uid://jdgl6gpb80es" path="res://src/ui/ui.tscn" id="4_vij2i"]
+[ext_resource type="PackedScene" uid="uid://k4m6qhqmsa1f" path="res://src/environment/skull.tscn" id="5_7fuvd"]
+[ext_resource type="PackedScene" uid="uid://bfd23sw23xk4s" path="res://src/environment/grass_1.tscn" id="6_d0nsp"]
+[ext_resource type="PackedScene" uid="uid://d3ntf7nmnvewj" path="res://src/environment/grass_2.tscn" id="7_rjqjg"]
+[ext_resource type="PackedScene" uid="uid://2sp7sjqa4e31" path="res://src/environment/rock_1.tscn" id="8_3q7w2"]
+[ext_resource type="PackedScene" uid="uid://lut6v78l421n" path="res://src/systems/selection_cursor/selection_cursor.tscn" id="10_rjqjg"]
+[ext_resource type="PackedScene" uid="uid://dvhjdh50gkfdr" path="res://src/entities/npc/allies/ally_tomatoe_1.tscn" id="11_3q7w2"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hhur6"]
-material = SubResource("StandardMaterial3D_rhei5")
+material = ExtResource("1_rjqjg")
 size = Vector2(50, 50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plnw3"]
-shading_mode = 0
+[node name="Level13d" type="Node3D" unique_id=1751861303]
 
-[sub_resource type="BoxMesh" id="BoxMesh_plnw3"]
-material = SubResource("StandardMaterial3D_plnw3")
-
-[node name="Level13d" type="Node3D"]
-
-[node name="Player" parent="." instance=ExtResource("1_plnw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.89461136, 0.15958437, 2.647638)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1723805861]
+cast_shadow = 0
+ignore_occlusion_culling = true
 mesh = SubResource("PlaneMesh_hhur6")
 
-[node name="EnemyGodot" parent="." instance=ExtResource("1_hhur6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09384638, 0)
+[node name="UI" parent="." unique_id=2026104152 instance=ExtResource("4_vij2i")]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.6293882, 0, -0.777091, -0.7227703, 0.36731306, -0.5853923, 0.28543568, 0.93009734, 0.23118252, -4.5243273, 0.48590136, 0)
-visible = false
-cast_shadow = 0
-gi_mode = 0
-mesh = SubResource("BoxMesh_plnw3")
+[node name="SelectionCursor" parent="." unique_id=1342065020 instance=ExtResource("10_rjqjg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
-[node name="NPC" parent="." instance=ExtResource("3_hinqm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3099527, 0.082089335, 0)
+[node name="Ally" parent="." unique_id=2045800866 node_paths=PackedStringArray("long_term_target") instance=ExtResource("11_3q7w2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7356415, 0, -1.2664795)
+long_term_target = NodePath("../Target/Target")
 
-[node name="UI" parent="." instance=ExtResource("4_vij2i")]
+[node name="Player" parent="." unique_id=702059859 instance=ExtResource("4_rq75q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3165283, 0.15958437, 2.5566406)
 
-[node name="Env" type="Node3D" parent="."]
+[node name="Env" type="Node" parent="." unique_id=559118312]
 
-[node name="flower_1" type="Sprite3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 2.8400934, 0.679507, -0.34847212)
-texture = ExtResource("7_rjqjg")
+[node name="Skull" parent="Env" unique_id=548802123 instance=ExtResource("5_7fuvd")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 1.8986816, 0.638252, -8.22644)
 
-[node name="grass_1" type="Sprite3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -2.9424229, 0.65370727, 1.4664841)
-texture = ExtResource("5_rq75q")
+[node name="Grass_1" parent="Env" unique_id=1413477413 instance=ExtResource("6_d0nsp")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -4.067444, 0.6535183, -3.317505)
 
-[node name="grass_2" type="Sprite3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 2.5466757, 0.65370727, -2.4669752)
-texture = ExtResource("6_d0nsp")
+[node name="Grass_2" parent="Env" unique_id=2025374835 instance=ExtResource("7_rjqjg")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 4.0759277, 1.0046412, -6.364258)
 
-[node name="rock_1" type="Sprite3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 1.8460255, 0.65370727, 4.767039)
-texture = ExtResource("8_3q7w2")
+[node name="Rock_1" parent="Env" unique_id=1284584636 instance=ExtResource("8_3q7w2")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 20.07727, 0.6535183, -3.7552643)
 
-[node name="skull_1" type="Sprite3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 6.4750853, 0.65370727, 4.767039)
-texture = ExtResource("9_fy1hu")
+[node name="Rock_2" parent="Env" unique_id=1844111551 instance=ExtResource("8_3q7w2")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -3.5858765, 0.6535183, -6.975952)
 
-[node name="SelectionCursor" parent="." instance=ExtResource("10_rjqjg")]
+[node name="Target" type="Node" parent="." unique_id=2033688426]
+
+[node name="Target" type="Node3D" parent="Target" unique_id=619289302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.63398, 0, 0)

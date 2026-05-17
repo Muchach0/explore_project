@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://dvhjdh50gkfdr"]
+
+[ext_resource type="Script" uid="uid://ce466t8kx3op" path="res://src/entities/npc/npc_base.gd" id="1_2nggw"]
+[ext_resource type="PackedScene" uid="uid://bqleugdc4jhc6" path="res://src/entities/npc/allies/ally_tomatoe_1_2d_model.tscn" id="2_2nggw"]
+[ext_resource type="Script" uid="uid://bgg3fp2f8oroh" path="res://src/systems/state_machine/state_machine.gd" id="3_cvj66"]
+[ext_resource type="Script" uid="uid://beocw48giicgu" path="res://src/systems/state_machine/states/idle_state.gd" id="4_m3xdm"]
+[ext_resource type="Script" uid="uid://qnplu87au3m0" path="res://src/systems/state_machine/states/wandering_state.gd" id="5_ms2je"]
+[ext_resource type="Script" uid="uid://veqriul8mo75" path="res://src/systems/state_machine/states/combat_state.gd" id="6_2nggw"]
+[ext_resource type="Script" uid="uid://djq4a00naqbu6" path="res://src/systems/state_machine/states/dead_state.gd" id="8_7sfqa"]
+[ext_resource type="Script" uid="uid://c78oik3ku5pcm" path="res://src/systems/state_machine/states/walking_state.gd" id="9_w8reu"]
+[ext_resource type="Script" uid="uid://c7n12r1ga5b8m" path="res://src/systems/combat/hitbox.gd" id="10_cvj66"]
+[ext_resource type="Script" uid="uid://b73sir6xbr0gt" path="res://src/systems/combat/hurtbox.gd" id="10_ymssn"]
+[ext_resource type="PackedScene" uid="uid://cn8sholhpdpkk" path="res://src/environment/particles/particle_heal.tscn" id="11_cvj66"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_66muy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d3bgc"]
+size = Vector3(1.0819511, 0.9394531, 0.744457)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvj66"]
+size = Vector3(1.8028593, 0.75561523, 0.8538785)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kgs2i"]
+height = 0.5
+radius = 4.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m3xdm"]
+size = Vector3(1.2490845, 1.0845337, 1.2480469)
+
+[node name="Ally" type="CharacterBody3D" unique_id=1179856755 groups=["ally", "selectable"]]
+script = ExtResource("1_2nggw")
+target_group = "enemy"
+attack_range = 0.75
+attack_cooldown = 1.0
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=542942576]
+transform = Transform3D(0.5, 0, 0, 0, 0.35355338, 0.35355338, 0, -0.35355338, 0.35355338, 0, 0.6789501, -1.1920929e-07)
+texture = SubResource("ViewportTexture_66muy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1311365375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12007964, 0.5840039, 0.25903118)
+shape = SubResource("BoxShape3D_d3bgc")
+
+[node name="Hurtbox" type="Area3D" parent="CollisionShape3D" unique_id=2044468537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007385254, -0.21582034, -0.14455032)
+script = ExtResource("10_ymssn")
+damage = 15
+metadata/_custom_type_script = "uid://b73sir6xbr0gt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionShape3D/Hurtbox" unique_id=1972390716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013237834, 0.12219241, -0.6816304)
+shape = SubResource("BoxShape3D_cvj66")
+debug_color = Color(0.8512725, 0.0008688563, 0.8983177, 0.41960785)
+
+[node name="AggroArea3D" type="Area3D" parent="." unique_id=1998364627]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroArea3D" unique_id=1768972219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1885376, 0)
+shape = SubResource("CylinderShape3D_kgs2i")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1726727416]
+transparent_bg = true
+size = Vector2i(375, 375)
+
+[node name="Model2D" parent="SubViewport" unique_id=1422705119 instance=ExtResource("2_2nggw")]
+
+[node name="StateMachine" type="Node" parent="." unique_id=1114490860]
+script = ExtResource("3_cvj66")
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1634122410]
+script = ExtResource("4_m3xdm")
+
+[node name="WanderingState" type="Node" parent="StateMachine" unique_id=1622257582]
+script = ExtResource("5_ms2je")
+
+[node name="CombatState" type="Node" parent="StateMachine" unique_id=1791949768]
+script = ExtResource("6_2nggw")
+
+[node name="DeadState" type="Node" parent="StateMachine" unique_id=614151145]
+script = ExtResource("8_7sfqa")
+
+[node name="WalkingState" type="Node" parent="StateMachine" unique_id=586968870]
+script = ExtResource("9_w8reu")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1328712915]
+script = ExtResource("10_cvj66")
+metadata/_custom_type_script = "uid://c7n12r1ga5b8m"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1629368141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08047485, 0.5704651, 0.12402344)
+shape = SubResource("BoxShape3D_m3xdm")
+debug_color = Color(0.66856635, 0.51039666, 0.010189857, 0.41960785)
+
+[node name="ParticleHeal" parent="." unique_id=637874378 instance=ExtResource("11_cvj66")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3923143, 0)
