@@ -93,7 +93,7 @@ func load_next_level() -> void:
 
 	player = _spawn_player(current_level, embedded_player_transform)
 	_spawn_allies(current_level, embedded_allies)
-	_track_level_enemies()
+	# _track_level_enemies()
 
 	EventBus.update_level_number.emit(current_level_index + 1)
 	level_started.emit(current_level_index + 1)
@@ -144,8 +144,8 @@ func _complete_level_if_all_enemies_dead() -> void:
 	if _level_completion_pending or current_level == null or _enemies_alive > 0:
 		return
 
-	_level_completion_pending = true
-	complete_current_level()
+	# _level_completion_pending = true
+	# complete_current_level()
 
 
 func choose_player_upgrade(upgrade: Upgrade) -> void:
